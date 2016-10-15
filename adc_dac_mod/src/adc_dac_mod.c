@@ -222,16 +222,27 @@ TASK(Analogic2)
    }
 
    /* end of Blinking */
-	uint8_t lpcAdcChannel = 66 ; //modificado para tomar desde A0
+	//uint8_t lpcAdcChannel = 66 ; //modificado para tomar desde A0
 	uint16_t analogValue = 0;
+	 /* typedef enum CHIP_ADC_CHANNEL {
+			ADC_CH0 = 0,	< ADC channel 0
+				ADC_CH1,		/**< ADC channel 1
+				ADC_CH2,		/**< ADC channel 2
+				ADC_CH3,		/**< ADC channel 3
+				ADC_CH4,		/**< ADC channel 4
+				ADC_CH5,		/**< ADC channel 5
+				ADC_CH6,		/**< ADC channel 6
+				ADC_CH7,		/**< ADC channel 7
+			} ADC_CHANNEL_T;*/
 
-	Chip_ADC_EnableChannel(LPC_ADC0, lpcAdcChannel, ENABLE);
-	Chip_ADC_SetStartMode(LPC_ADC0, ADC_START_NOW, ADC_TRIGGERMODE_RISING);
-	while( (Chip_ADC_ReadStatus(LPC_ADC0, lpcAdcChannel, ADC_DR_DONE_STAT) != SET) );
+		//Chip_ADC_EnableChannel(LPC_ADC0, lpcAdcChannel, ENABLE);
+		Chip_ADC_EnableChannel(LPC_ADC0, ADC_CH0, ENABLE);
+		Chip_ADC_SetStartMode(LPC_ADC0, ADC_START_NOW, ADC_TRIGGERMODE_RISING);
+		while( (Chip_ADC_ReadStatus(LPC_ADC0, ADC_CH0, ADC_DR_DONE_STAT) != SET) );
 
-	Chip_ADC_ReadValue( LPC_ADC0, lpcAdcChannel, &analogValue );
+		Chip_ADC_ReadValue( LPC_ADC0, ADC_CH0, &analogValue );
 
-	Chip_ADC_EnableChannel( LPC_ADC0, lpcAdcChannel, DISABLE );
+		Chip_ADC_EnableChannel( LPC_ADC0, ADC_CH0, DISABLE );
 
 	//ciaaPOSIX_printf(&analogValue);
 
