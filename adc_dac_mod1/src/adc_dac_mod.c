@@ -224,10 +224,7 @@ TASK(Analogic2)
    /* end of Blinking */
 	//uint8_t lpcAdcChannel = 66 ; //modificado para tomar desde A0
 	uint16_t analogValue = 0;
-<<<<<<< HEAD
-=======
 	float dato=0;
->>>>>>> a1fcb9173a12ffbd2124ad2555eedf7bbd2e8501
 	 /* typedef enum CHIP_ADC_CHANNEL {
 			ADC_CH0 = 0,	< ADC channel 0
 				ADC_CH1,		/**< ADC channel 1
@@ -245,13 +242,11 @@ TASK(Analogic2)
 		while( (Chip_ADC_ReadStatus(LPC_ADC0, ADC_CH0, ADC_DR_DONE_STAT) != SET) );
 
 		Chip_ADC_ReadValue( LPC_ADC0, ADC_CH0, &analogValue );
-<<<<<<< HEAD
-
-=======
 		dato= (5*analogValue/1023);
+
 		ciaaPOSIX_printf ("El valor de adc es:%d\r\n",analogValue);
 		ciaaPOSIX_printf ("El valor de tension es:%f\r\n",dato);
->>>>>>> a1fcb9173a12ffbd2124ad2555eedf7bbd2e8501
+
 		Chip_ADC_EnableChannel( LPC_ADC0, ADC_CH0, DISABLE );
 
 	//ciaaPOSIX_printf(&analogValue);
