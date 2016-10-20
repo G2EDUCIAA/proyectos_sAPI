@@ -250,7 +250,7 @@ TASK(InitTask)
 
    /* activate example tasks */
    Periodic_Task_Counter = 0;
-   SetRelAlarm(ActivateBlinkeo, 200, 200);
+  // SetRelAlarm(ActivateBlinkeo, 200, 200);
 
    /* Activates the SerialEchoTask task */
    ActivateTask(SerialEchoTask);
@@ -310,6 +310,28 @@ TASK(SerialEchoTask)
 	     		  data=1;
 	     	  }
 
+	     	 if(data=='1'){
+	     	 	     		  if(Chip_GPIO_ReadPortBit( LPC_GPIO_PORT, 0, 14 )==TRUE){
+	     	 	     		  	   Chip_GPIO_SetPinState( LPC_GPIO_PORT, 0, 14, FALSE);
+	     	 	     		  }
+	     	 	     		  else{
+	     	 	     		  	   Chip_GPIO_SetPinState( LPC_GPIO_PORT, 0, 14, TRUE);
+	     	 	     		  }
+	     	 	     		  data=1;
+	     	 	     	  }
+	     	 if(data=='2'){
+	     		     	 	     		  if(Chip_GPIO_ReadPortBit( LPC_GPIO_PORT, 1, 11 )==TRUE){
+	     		     	 	     		  	   Chip_GPIO_SetPinState( LPC_GPIO_PORT, 1, 11, FALSE);
+	     		     	 	     		  }
+	     		     	 	     		  else{
+	     		     	 	     		  	   Chip_GPIO_SetPinState( LPC_GPIO_PORT, 1, 11, TRUE);
+	     		     	 	     		  }
+	     		     	 	     		  data=1;
+	     		     	 	     	  }
+
+
+
+
    }
 }
 
@@ -319,8 +341,8 @@ TASK(SerialEchoTask)
  * This task copies the status of the inputs bits 0..3 to the output bits 0..3.
  * This task also blinks the output 4
  */
-TASK(Blinkeo)
-{
+ //TASK(Blinkeo)
+//{
    /*
     * Example:
     *    Read inputs 0..3, update outputs 0..3.
@@ -328,26 +350,26 @@ TASK(Blinkeo)
     */
 
    /* variables to store input/output status */
-   uint8_t inputs = 0, outputs = 0;
+  /* uint8_t inputs = 0, outputs = 0;
 
    /* read inputs */
-   ciaaPOSIX_read(fd_in, &inputs, 1);
+  // ciaaPOSIX_read(fd_in, &inputs, 1);
 
    /* read outputs */
-   ciaaPOSIX_read(fd_out, &outputs, 1);
+  // ciaaPOSIX_read(fd_out, &outputs, 1);
 
    /* update outputs with inputs */
-   outputs &= 0xF0;
-   outputs |= inputs & 0x0F;
+  // outputs &= 0xF0;
+   //outputs |= inputs & 0x0F;*/
 
    /* blink */
-   outputs ^= 0x10;
+   //outputs ^= 0x10;
 
    /* write */
-   ciaaPOSIX_write(fd_out, &outputs, 1);
+  /* ciaaPOSIX_write(fd_out, &outputs, 1);
 
    /* Print Task info */
-   Periodic_Task_Counter++;
+   /*Periodic_Task_Counter++;
    ciaaPOSIX_printf("Periodic Task: %d\n", Periodic_Task_Counter);
 
    uint8_t dato=1;
@@ -359,11 +381,20 @@ TASK(Blinkeo)
   		  else{
   		  	   Chip_GPIO_SetPinState( LPC_GPIO_PORT, 1, 12, TRUE);
   		  }
-  	  }
+  	  }*/
+
+  	 /*if(dato=='2'){
+  	  		  if(Chip_GPIO_ReadPortBit( LPC_GPIO_PORT, 0, 14 )==TRUE){
+  	  		  	   Chip_GPIO_SetPinState( LPC_GPIO_PORT, 0, 14, FALSE);
+  	  		  }
+  	  		  else{
+  	  		  	   Chip_GPIO_SetPinState( LPC_GPIO_PORT, 0, 14, TRUE);
+  	  		  }
+  	  	  }
 
    /* end PeriodicTask */
-   TerminateTask();
-}
+  // TerminateTask();
+//}
 
 /** @} doxygen end group definition */
 /** @} doxygen end group definition */
