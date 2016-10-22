@@ -201,12 +201,14 @@ TASK(PeriodicTask2)
 	   Chip_GPIO_SetPinState(LPC_GPIO_PORT, 0, 11, FALSE);*/
 	   Chip_GPIO_WritePortBit(LPC_GPIO_PORT, 0, 14, false);
 	   Chip_GPIO_WritePortBit(LPC_GPIO_PORT, 1, 11, false);
+	   Chip_GPIO_WritePortBit(LPC_GPIO_PORT, 5, 2, false);
    }
    else{
 	  /* Chip_GPIO_SetPinState( LPC_GPIO_PORT, 0, 14, TRUE);
 	   Chip_GPIO_SetPinState( LPC_GPIO_PORT, 0, 11, TRUE);*/
 	   Chip_GPIO_WritePortBit(LPC_GPIO_PORT, 0, 14, true);
 	   Chip_GPIO_WritePortBit(LPC_GPIO_PORT, 1, 11, true);
+	   Chip_GPIO_WritePortBit(LPC_GPIO_PORT, 5, 2, true);
    }
 
    TerminateTask();
